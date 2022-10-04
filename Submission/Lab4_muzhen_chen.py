@@ -105,28 +105,29 @@ def elephant (G = grey, O = nothing, W = white):
 getUserChoice()
 while True:
     try:
-        choice = int(input())
-        if choice == 1:
+       i = int(input())
+        if i == 1:
             s.set_pixels(trinket_logo())
 
-        if choice == 2:
+        if i == 2:
             s.set_pixels(plus())
 
-        if choice == 3:
+        if i == 3:
             s.set_pixels(equals())
 
-        if choice == 4:
+        if i == 4:
             s.set_pixels(raspi_logo())
 
-        if choice == 5:
+        if i == 5:
             s.set_pixels(heart())
 
-        if choice == 6:
+        if i == 6:
             s.set_pixels(elephant())
-        if choice == 0:  #
+            
+        if i == 0:  
             print("Exit")
             break
-        if choice > 6 or choice < 0:
+        if i > 6 or i < 0:
             print("choose between 0 to 6")
     except ValueError:
         print("Must be integer, try again.")
