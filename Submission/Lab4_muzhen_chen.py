@@ -13,15 +13,27 @@ nothing = (0,0,0)
 pink = (255,105, 180)
 grey = (220, 220, 220)
 
-def getUserChoice():
-    print("What do you want to display(0. to exit):")
-    print("1. Logo")
-    print("2. Plus sign")
-    print("3. Equals sign")
-    print("4. Raspberry")
-    print("5. Heart")
-    print("6. Elephant")
-    print("0. Exit")
+def getUserchoice():
+    while True:
+        try:
+            choice = int(input("""What do you want to display (0. to exit):
+                    1. Logo
+                    2. Plus sign
+                    3. Equals sign
+                    4. Raspberry
+                    5. Heart
+                    6. Elephant
+                    0. Exit"""
+                    ))
+
+            if choice > 6 or choice < 0:
+                print("Please enter a number between 0 to 6")
+        except ValueError:
+             print("Please enter an integer")
+        else:
+           return choice
+
+
 
 def trinket_logo(O = nothing, Y = yellow, B = blue, G = green):
     logo = [
@@ -102,32 +114,14 @@ def elephant (G = grey, O = nothing, W = white):
 ]
     return logo
 
-getUserChoice()
+patterns = [trinket_logo(), plus(), equals(), raspi_logo() , heart(), elephant()]
+
 while True:
-    try:
-       i = int(input())
-        if i == 1:
-            s.set_pixels(trinket_logo())
-
-        if i == 2:
-            s.set_pixels(plus())
-
-        if i == 3:
-            s.set_pixels(equals())
-
-        if i == 4:
-            s.set_pixels(raspi_logo())
-
-        if i == 5:
-            s.set_pixels(heart())
-
-        if i == 6:
-            s.set_pixels(elephant())
-            
-        if i == 0:  
-            print("Exit")
-            break
-        if i > 6 or i < 0:
-            print("choose between 0 to 6")
-    except ValueError:
-        print("Must be integer, try again.")
+    choice = getUserchoice()
+    if choice == 0:
+      print("Exit")
+      break
+    if choice > 6 or choice < 0:
+      print("Please enter a number between 0 to 6")
+    else:
+      s.set_pixels(patterns[choice - 1])
